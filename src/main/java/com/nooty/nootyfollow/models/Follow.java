@@ -1,6 +1,12 @@
 package com.nooty.nootyfollow.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class Follow {
+    @Id
+    @GeneratedValue
+    private int id;
     private String userId;
     private String followeeId;
 
