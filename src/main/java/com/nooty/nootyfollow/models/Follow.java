@@ -1,8 +1,9 @@
 package com.nooty.nootyfollow.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+@Entity
 public class Follow {
     @Id
     @GeneratedValue
