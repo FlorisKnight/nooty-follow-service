@@ -17,7 +17,7 @@ public class FollowController {
     @Autowired
     private FollowRepo followRepo;
 
-    @PostMapping(path = "/create/{id}", produces = "application/json")
+    @PostMapping(path = "/follow/{id}", produces = "application/json")
     public ResponseEntity create(@RequestBody CreateViewModel createViewModel, @PathVariable String id) {
         Optional<Follow> followOptional = this.followRepo.findByUserIdAndFolloweeId(id, createViewModel.getUserId());
         if (followOptional.isPresent()) {
@@ -41,7 +41,7 @@ public class FollowController {
         return ResponseEntity.ok(followeeIds);
     }
 
-    @DeleteMapping(path = "/{id}", produces = "application/json")
+    @DeleteMapping(path = "/unfollow/{id}", produces = "application/json")
     public ResponseEntity delete(@PathVariable String id, @RequestBody CreateViewModel createViewModel) {
         Optional<Follow> followOptional = this.followRepo.findByUserIdAndFolloweeId(id, createViewModel.getUserId());
         if (!followOptional.isPresent()) {
