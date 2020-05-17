@@ -19,6 +19,10 @@ public class FollowController {
 
     @PostMapping(path = "/create/{id}", produces = "application/json")
     public ResponseEntity create(@RequestBody CreateViewModel createViewModel, @PathVariable String id) {
+        Optional<Follow> followOptional = this.followRepo.findByUserIdAndFolloweeId(id, createViewModel.getUserId());
+        if (followOptional.isPresent()) {
+            return ResponseEntity.status(404).build();
+        }
         Follow follow = new Follow();
         follow.setUserId(id);
         follow.setFolloweeId(createViewModel.getUserId());
