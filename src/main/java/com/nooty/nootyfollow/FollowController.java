@@ -41,7 +41,7 @@ public class FollowController {
         return ResponseEntity.ok(followeeIds);
     }
 
-    @GetMapping(path = "/{id}", produces = "application/json")
+    @GetMapping(path = "/followers/{id}", produces = "application/json")
     public ResponseEntity getFollersFromId(@PathVariable String id) {
         List<String> followeeIds = new ArrayList<>();
         this.followRepo.findAllByFolloweeId(id).forEach( f -> {
