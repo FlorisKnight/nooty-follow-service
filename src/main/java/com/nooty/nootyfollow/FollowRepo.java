@@ -9,5 +9,7 @@ public interface FollowRepo extends CrudRepository<Follow, String> {
 
     Iterable<Follow> findAllByUserId(String userId);
 
+    Iterable<Follow> findAllByFolloweeId(String id);
+
     Optional<Follow> findByUserIdAndFolloweeId(String userId, String followeeId);
 }

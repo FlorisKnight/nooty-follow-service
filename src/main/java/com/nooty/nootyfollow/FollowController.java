@@ -41,6 +41,16 @@ public class FollowController {
         return ResponseEntity.ok(followeeIds);
     }
 
+    @GetMapping(path = "/{id}", produces = "application/json")
+    public ResponseEntity getFollersFromId(@PathVariable String id) {
+        List<String> followeeIds = new ArrayList<>();
+        this.followRepo.findAllByFolloweeId(id).forEach( f -> {
+            followeeIds.add(f.getFolloweeId());
+        });
+
+        return ResponseEntity.ok(followeeIds);
+    }
+
     @DeleteMapping(path = "/unfollow/{id}", produces = "application/json")
     public ResponseEntity delete(@PathVariable String id, @RequestBody CreateViewModel createViewModel) {
         Optional<Follow> followOptional = this.followRepo.findByUserIdAndFolloweeId(id, createViewModel.getUserId());
