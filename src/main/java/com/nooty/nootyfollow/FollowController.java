@@ -35,7 +35,7 @@ public class FollowController {
     public ResponseEntity getFolleesFromId(@PathVariable String id) {
         List<String> followeeIds = new ArrayList<>();
         this.followRepo.findAllByUserId(id).forEach( f -> {
-            followeeIds.add(f.getFolloweeId());
+            followeeIds.add(f.getUserId());
         });
 
         return ResponseEntity.ok(followeeIds);
